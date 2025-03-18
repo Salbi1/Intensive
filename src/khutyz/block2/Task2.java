@@ -21,7 +21,7 @@ public class Task2 {
         CompletableFuture<Long> comp = CompletableFuture.supplyAsync(() -> {
             return list.stream().parallel()
                     .filter(e -> e % 2 == 0).count();
-        }, pool);
+        });
 
         CompletableFuture<Long> comp2 = CompletableFuture.supplyAsync(() -> {
             return list.stream().parallel()

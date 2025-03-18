@@ -7,8 +7,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Task1 {
+    private static volatile ConcurrentSkipListSet<String> concurrentSet = new ConcurrentSkipListSet<>();
+
     public static void main(String[] args) {
-        ConcurrentSkipListSet<String> concurrentSet = new ConcurrentSkipListSet<>();
         fill(concurrentSet);
         iteration(concurrentSet);
     }
@@ -33,8 +34,6 @@ public class Task1 {
             });
         }
 
-        executorService.shutdown();
-
         try {
             if (!executorService.awaitTermination(60,
                     java.util.concurrent.TimeUnit.SECONDS)) {
@@ -44,6 +43,8 @@ public class Task1 {
             executorService.shutdownNow();
             Thread.currentThread().interrupt();
         }
+
+        executorService.shutdown();
         System.out.println("Количество итераций потоков: " + atomicInteger);
     }
 

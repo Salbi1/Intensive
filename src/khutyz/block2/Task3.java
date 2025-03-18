@@ -3,11 +3,11 @@ package khutyz.block2;
 import java.util.Scanner;
 
 public class Task3 {
-    private volatile Boolean flag = false;
+    private Boolean flag = false;
+    private static Scanner console = new Scanner(System.in);
 
     public static void main(String[] args) {
         while (true) {
-            Scanner console = new Scanner(System.in);
             String text = console.next();
 
             Task3 task3Thread = new Task3();
