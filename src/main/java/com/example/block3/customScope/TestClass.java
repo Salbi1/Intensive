@@ -1,4 +1,4 @@
-package com.example.block3;
+package com.example.block3.customScope;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;

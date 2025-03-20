@@ -1,4 +1,4 @@
-package com.example.block3;
+package com.example.block3.handler;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

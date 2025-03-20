@@ -1,13 +1,12 @@
 package com.example.block3.config;
 
-import com.example.block3.CustomHeaderInterceptor;
+import com.example.block3.handler.CustomHeaderInterceptor;
 import com.example.block3.customScope.CustomScope;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
