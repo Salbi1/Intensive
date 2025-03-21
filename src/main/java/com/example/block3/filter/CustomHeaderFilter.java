@@ -20,9 +20,10 @@ public class CustomHeaderFilter implements Filter {
                          FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
+        CustomHttpServeletRequestWrapper wrappedRequest =
+                new CustomHttpServeletRequestWrapper(httpServletRequest);
 
-        httpServletResponse.setHeader("X-Custom-Header", "My Custom Header");
-
+        wrappedRequest.setHeader("X-Custom-Header", "header custom");
         chain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

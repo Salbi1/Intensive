@@ -20,7 +20,6 @@ public class CustomScope implements Scope {
 
     @Override
     public void registerDestructionCallback(String name, Runnable callback) {
-
     }
 
     @Override

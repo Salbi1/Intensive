@@ -44,7 +44,7 @@ c) Найти 3 товара, для которых было продано на
 _____________________________________________________
 
 1 
-select distinct * from users
+select distinct id from users
 join orders on users.id=orders.user_id
 where users.registered_at < '2023-01-01'
 
