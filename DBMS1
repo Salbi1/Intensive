@@ -1,0 +1,61 @@
+В PostgreSQL базе данных онлайн-магазина есть три таблицы: 
+```
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,  -- Идентификатор пользователя
+    username VARCHAR(100) NOT NULL UNIQUE,  -- Имя пользователя
+    email VARCHAR(100) NOT NULL UNIQUE,  -- Электронная почта
+    password VARCHAR(100) NOT NULL,  -- Пароль
+    registered_at TIMESTAMP NOT NULL  -- Дата регистрации
+);
+
+
+-- Товары
+CREATE TABLE products (
+    id SERIAL PRIMARY KEY,  -- Идентификатор товара
+    name VARCHAR(100) NOT NULL,  -- Название товара
+    description TEXT,  -- Описание
+    price DECIMAL(10, 2) NOT NULL,  -- Цена единицы товара
+    stock INT NOT NULL  -- Количество оставшихся единиц товара
+);
+
+-- Заказы. В одном заказе только один вид товара, но любое его количество.
+-- Пример: 5 единиц товара "Карандаш".
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,  -- Идентификатор заказа
+    user_id INT NOT NULL,  -- Идентификатор пользователя
+    order_date TIMESTAMP NOT NULL,  -- Дата заказа
+    product_id INT NOT NULL,  -- Идентификатор товара
+    quantity INT NOT NULL  -- Количество
+);
+
+-- Внешние ключи
+ALTER TABLE orders ADD CONSTRAINT fk_user
+FOREIGN KEY (user_id) REFERENCES users(id);
+
+ALTER TABLE orders ADD CONSTRAINT fk_product
+FOREIGN KEY (product_id) REFERENCES products(id);
+```
+Написать запросы:
+a) Найти всех пользователей, которые зарегистрировались раньше 1 января 2023 года и сделали хотя бы 1 заказ.
+b) Найти общий доход магазина за 2023 год.
+c) Найти 3 товара, для которых было продано наибольшее количество единиц.
+
+
+_____________________________________________________
+
+1 
+select distinct * from users
+join orders on users.id=orders.user_id
+where users.registered_at < '2023-01-01'
+
+2
+select sum(products.price * orders.quantity) from products
+join orders on products.id=orders.product_id 
+where orders.order_date between '2023-01-01' and '2023-12-31'
+
+3
+select products.name FROM products
+join orders on products.id=orders.product_id 
+group by products.name
+order by sum(orders.quantity) DESC
+limit 3
