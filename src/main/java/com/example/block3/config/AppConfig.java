@@ -1,6 +1,5 @@
 package com.example.block3.config;
 
-import com.example.block3.handler.CustomHeaderInterceptor;
 import com.example.block3.customScope.CustomScope;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
