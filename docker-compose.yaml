@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+#  app:
+#    build: .
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - kafka
+
+  kafka:
+    image: apache/kafka:3.7.2
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+
+  zookeeper:
+    image: zookeeper:latest
+    ports:
+      - "2181:2181"
