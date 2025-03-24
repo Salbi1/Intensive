@@ -1,0 +1,9 @@
+version: '3'
+services:
+  server:
+    image: openjdk:11-jre-slim
+    volumes:
+      - spring-boot-app/target/spring-boot-app-1.0-SNAPSHOT.jar:/app/application.jar
+    ports:
+      - "8080:8080"
+    entrypoint: ["java", "-jar", "/app/application.jar"]
