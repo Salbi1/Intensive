@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
     private final CustomFeign customFeign;
 
-    @GetMapping("/call-other-service")
+    @GetMapping("/api")
     public String callOtherService() {
         return customFeign.callOtherService();
+    }
+
+    public String fallbackInvokeService(Throwable throwable) {
+        return "Fallback response from controller: The service is currently unavailable.";
     }
 }
